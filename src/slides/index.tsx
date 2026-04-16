@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { BookOpen, Laptop, Smartphone, Settings, GraduationCap, Database, CheckCircle2, Shield, Users, Cog, Globe, Mail, Phone, MapPin, Star } from 'lucide-react';
+import { BookOpen, Laptop, Smartphone, Settings, GraduationCap, Database, CheckCircle2, Shield, Users, Cog, Globe, Mail, Phone, MapPin, Star, LayoutDashboard } from 'lucide-react';
 
 // Reusable animation variants
 const fadeUp = {
@@ -137,7 +137,7 @@ export const Slide1 = () => (
 export const Slide2 = () => (
   <div className="flex flex-col h-full">
     <motion.h2 custom={0} variants={fadeUp} initial="hidden" animate="visible" className="font-heading font-bold text-4xl text-navy mb-16 text-center">
-      Lợi Động Cơ Của Việc Dạy & Học
+      Nâng Tầm Trải Nghiệm Dạy & Học
     </motion.h2>
     
     <div className="flex-1 flex flex-col items-center justify-center">
@@ -169,31 +169,66 @@ export const Slide2 = () => (
 );
 
 // Slide 3
-export const Slide3 = () => (
-  <div className="flex flex-col h-full">
-    <motion.h2 custom={0} variants={fadeUp} initial="hidden" animate="visible" className="font-heading font-bold text-4xl text-navy mb-12">
-      Sức Mạnh Công Nghệ Ngầm:<br/><span className="text-teal">Hệ Thống Tự Động & Cá Nhân Hóa</span>
-    </motion.h2>
-    
-    <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="flex flex-col gap-6 flex-1 justify-center">
-      {[
-        { icon: Settings, title: "Tự động hóa", desc: "Gợi ý bài học tự động, chấm bài và báo cáo tiến độ theo thời gian thực." },
-        { icon: GraduationCap, title: "Cá nhân hóa", desc: "Xây dựng lộ trình học tập độc bản, tùy biến theo năng lực và tốc độ tiếp thu của từng học sinh." },
-        { icon: Smartphone, title: "Quản trị luồng dữ liệu", desc: "Phân tích Dashboard trực quan cho Ban giám hiệu kết hợp khả năng truy cập Đa nền tảng (PC, Tablet, Mobile) không giới hạn." }
-      ].map((item, i) => (
-        <motion.div key={i} variants={fadeUp} custom={i} className="bg-white rounded-2xl shadow-md p-6 flex items-center gap-6 border-l-4 border-teal hover:shadow-lg transition-shadow">
-          <div className="w-16 h-16 rounded-full bg-mint flex items-center justify-center shrink-0">
-            <item.icon className="w-8 h-8 text-teal" />
+export const Slide3 = () => {
+  const rows = [
+    {
+      title: "Tự động hóa",
+      icon: Settings,
+      cards: [
+        { title: "Gợi ý bài học tự động", desc: "Hệ thống AI tự động đề xuất bài học phù hợp với tiến trình của học sinh." },
+        { title: "Chấm bài & Báo cáo", desc: "Tự động chấm điểm bài tập và tạo báo cáo kết quả chi tiết." },
+        { title: "Theo dõi kết quả theo thời gian thực", desc: "Cập nhật tiến độ học tập liên tục, không cần chờ đợi." }
+      ]
+    },
+    {
+      title: "Cá nhân hóa",
+      icon: GraduationCap,
+      cards: [
+        { title: "Lộ trình học độc bản", desc: "Mỗi học sinh có một lộ trình riêng, không ai giống ai." },
+        { title: "Tùy biến kế hoạch học tập", desc: "Giáo viên và hệ thống cùng điều chỉnh nội dung theo nhu cầu." },
+        { title: "Tiếp cận kiến thức phù hợp năng lực", desc: "Từng học sinh đều được học nội dung tương ứng với trình độ của mình." }
+      ]
+    },
+    {
+      title: "Quản trị luồng dữ liệu",
+      icon: LayoutDashboard,
+      cards: [
+        { title: "Vận hành đa nền tảng", desc: "Truy cập mọi lúc trên PC, Tablet, Mobile không giới hạn." },
+        { title: "Báo cáo tổng quan cho mọi cấp độ", desc: "Dashboard trực quan dành cho Ban giám hiệu, giáo viên và phụ huynh." },
+        { title: "Hỗ trợ liên tục từ đội ngũ kỹ thuật", desc: "Đội ngũ VNAISOFT luôn sẵn sàng hỗ trợ vận hành hệ thống." }
+      ]
+    }
+  ];
+
+  return (
+    <div className="flex flex-col h-full">
+      <motion.h2 custom={0} variants={fadeUp} initial="hidden" animate="visible" className="font-heading font-bold text-3xl md:text-4xl text-navy mb-6">
+        Sức Mạnh Công Nghệ Ngầm:<br/><span className="text-teal">Hệ Thống Tự Động & Cá Nhân Hóa</span>
+      </motion.h2>
+      
+      <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="flex flex-col gap-5 flex-1 justify-center">
+        {rows.map((row, i) => (
+          <div key={i} className="flex flex-col gap-2">
+            <motion.h3 variants={fadeUp} className="font-heading font-bold text-lg text-[#0d7377] flex items-center gap-2">
+              {row.title}
+            </motion.h3>
+            <div className="grid grid-cols-3 gap-4">
+              {row.cards.map((card, j) => (
+                <motion.div key={j} variants={fadeUp} className="bg-white rounded-xl p-4 border-l-4 border-[#0d7377] shadow-sm hover:shadow-md transition-shadow flex flex-col">
+                  <div className="w-8 h-8 rounded-full bg-teal/10 flex items-center justify-center mb-3 shrink-0">
+                    <row.icon className="w-4 h-4 text-[#0d7377]" />
+                  </div>
+                  <h4 className="font-bold text-navy text-sm mb-1.5 leading-tight">{card.title}</h4>
+                  <p className="text-gray-600 text-xs leading-relaxed">{card.desc}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
-          <div>
-            <h3 className="font-heading font-bold text-2xl text-navy mb-2">{item.title}</h3>
-            <p className="text-gray-600 text-lg">{item.desc}</p>
-          </div>
-        </motion.div>
-      ))}
-    </motion.div>
-  </div>
-);
+        ))}
+      </motion.div>
+    </div>
+  );
+};
 
 // Slide 4
 export const Slide4 = () => (
@@ -232,7 +267,7 @@ export const Slide4 = () => (
           <Shield className="w-7 h-7 text-teal"/>
         </div>
         <h3 className="font-heading font-bold text-xl text-navy mb-3">Bảo mật & An toàn</h3>
-        <p className="text-gray-600 flex-1">Môi trường số hóa kiểm duyệt nghiêm ngặt, an toàn tuyệt đối cho học sinh.</p>
+        <p className="text-gray-600 flex-1">Môi trường số hóa kiểm duyệt nghiêm ngặt, an toàn tuyệt đối cho nhà trường.</p>
       </motion.div>
     </motion.div>
   </div>
@@ -340,7 +375,7 @@ export const Slide6 = () => (
 export const Slide7 = () => (
   <div className="flex flex-col h-full items-center">
     <motion.h2 custom={0} variants={fadeUp} initial="hidden" animate="visible" className="font-heading font-bold text-4xl text-navy mb-16 text-center">
-      Hạt Nhân Của Hệ Sinh Thái Công Nghệ Trường Học
+      Nền Tảng Cốt Lõi Của Hệ Sinh Thái Công Nghệ Trường Học
     </motion.h2>
     
     <div className="flex-1 relative w-full max-w-3xl flex items-center justify-center">
